@@ -1,0 +1,11 @@
+rules:
+  - id: python-sql-injection-demo
+    languages:
+      - python
+    message: "Potential SQL injection: user input is concatenated into a SQL query."
+    severity: ERROR
+    patterns:
+      - pattern: $QUERY = $SQL + $USER
+      - metavariable-regex:
+          metavariable: $SQL
+          regex: '.*SELECT.*'
